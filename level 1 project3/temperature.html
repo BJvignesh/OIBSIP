@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('back-img.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        #result {
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        
+        <label for="temperature">Temperature:</label>
+        <input type="text" id="temperature" placeholder="Enter temperature">
+        
+        <label for="conversionDirection">Conversion Direction:</label>
+        <select id="conversionDirection">
+            <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+            <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+        </select>
+        
+        <button onclick="convert()">Convert</button>
+        
+        <p id="result">Converted Temperature: </p>
+    </div>
+    
+    <script>
+        function convert() {
+            var temperatureInput = document.getElementById('temperature').value;
+            var conversionDirection = document.getElementById('conversionDirection').value;
+
+            if (isNaN(temperatureInput)) {
+                alert("Please enter a valid temperature.");
+                return;
+            }
+
+            var temperature = parseFloat(temperatureInput);
+            var convertedTemperature;
+
+            if (conversionDirection === 'celsiusToFahrenheit') {
+                convertedTemperature = (temperature * 9/5) + 32;
+                document.getElementById('result').textContent = `Converted Temperature: ${convertedTemperature.toFixed(2)} °F`;
+            } else if (conversionDirection === 'fahrenheitToCelsius') {
+                convertedTemperature = (temperature - 32) * 5/9;
+                document.getElementById('result').textContent = `Converted Temperature: ${convertedTemperature.toFixed(2)} °C`;
+            }
+        }
+    </script>
+</body>
+</html>
